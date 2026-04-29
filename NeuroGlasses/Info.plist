@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>NeuroGlasses uses the microphone to record voice queries for AI processing.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>NeuroGlasses uses speech recognition to convert your voice to text.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>NeuroGlasses hosts a local TCP server so Rokid glasses can connect and display AI responses.</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_neuroglasses._tcp</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
+</dict>
+</plist>
