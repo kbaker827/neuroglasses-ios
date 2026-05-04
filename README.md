@@ -16,7 +16,7 @@ Converted from the Android original. Replaces Android-specific components with i
 - **Text input**: Type directly in the chat field.
 - **Predefined instructions**: Tap the quote icon to apply a reusable prompt prefix (Summarize, Translate, Explain, etc.) — create your own.
 - **Streaming AI responses**: GPT-4o streams text chunk-by-chunk to both the phone screen and connected glasses.
-- **Glasses display**: A TCP server on port 8083 pushes `{"type":"chunk","text":"..."}` lines to any connected Rokid glasses client. Text resets every 350 characters (configurable) to avoid overflow.
+- **Glasses display**: A Bluetooth/RokidSDK sends `{"type":"chunk","text":"..."}` lines to any connected Rokid glasses client. Text resets every 350 characters (configurable) to avoid overflow.
 - **TTS**: Each completed response is read aloud via OpenAI TTS-1, queued in segments for smooth playback.
 - **Vision**: The chat API supports multimodal input — extend `NeuroViewModel` to attach image data.
 
@@ -24,12 +24,12 @@ Converted from the Android original. Replaces Android-specific components with i
 
 | Android | iOS |
 |---------|-----|
-| `BluetoothSppManager` | `GlassesStreamServer` (NWListener TCP :8083) |
+| `BluetoothSppManager` | `GlassesStreamServer` (RokidSDK) |
 | `WhisperService` | `OpenAIService.transcribe()` |
 | `StreamingAudioPlayer` | `StreamingAudioPlayer` (AVAudioPlayer queue) |
 | `InstructionAdapter` | `InstructionStore` + `InstructionsView` |
 | `SettingsActivity` | `SettingsView` |
-| `CxrApi` | NWListener TCP (no Rokid SDK needed) |
+| `CxrApi` | RokidSDK |
 
 ## SDK Setup
 
@@ -54,7 +54,7 @@ The only thing left for each app is filling in the three credential constants (`
 
 ## Setup
 
-1. Open `NeuroGlasses.xcodeproj` in Xcode 15+.
+1. Open `NeuroGlasses.xcworkspace` in Xcode 15+ (after running `pod install`) 15+.
 2. Set your team in Signing & Capabilities.
 3. Build and run on an iPhone (iOS 17+).
 4. Tap the gear icon and enter your OpenAI API key.
